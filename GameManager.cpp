@@ -1,8 +1,15 @@
 #include "GameManager.h"
 
+GLfloat vertices[] =
+{
+    -0.5f, -0.5f, 0.0f,
+     0.5f, -0.5f, 0.0f,
+     0.0f,  0.5f, 0.0f,
+};
+
 GameManager::GameManager(bool running): _running(running), _window(glfwGetCurrentContext()), _renderSystem(&RenderSystem::getRenderSystem())
 {
-
+    vertexBuffer = new VertexBuffer( vertices, sizeof(vertices), GL_TRIANGLES, 3, sizeof(GLfloat)*3 );
 }
 
 GameManager::~GameManager()
@@ -16,7 +23,7 @@ void GameManager::runGameLoop()
     {
         _running = !glfwWindowShouldClose(_window);
 
-        _renderSystem->render();
+        _renderSystem->render(vertexBuffer);
     }
 }
 

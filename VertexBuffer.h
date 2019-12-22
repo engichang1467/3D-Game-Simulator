@@ -11,12 +11,18 @@ class VertexBuffer
     private:
         GLuint _vertexBufferID;
 
+        GLenum _mode;
+        GLsizei _count, _stride;
+
     public:
         
        GLuint getVertexBufferID();
          
-       VertexBuffer( const GLvoid *data, GLsizeiptr size);
+       VertexBuffer( const GLvoid *data, GLsizeiptr size, GLenum mode, GLsizei count, GLsizei stride);
        ~VertexBuffer();
+
+       void configureVertexAttributess(GLint vertexPosition);
+       void renderVertexBuffer();
 
 };
 

@@ -2,7 +2,7 @@
 #define GAMEMANAGER_H
 
 #include <iostream>
-#include <GLFW/glfw3.h>
+// #include <GLFW/glfw3.h>
 #include "RenderSystem.h"
 
 using namespace std;
@@ -14,6 +14,8 @@ class GameManager
         bool _running;
         RenderSystem *_renderSystem;
         GLFWwindow *_window;
+
+        VertexBuffer *vertexBuffer;
 
         GameManager(bool running);
         ~GameManager();
