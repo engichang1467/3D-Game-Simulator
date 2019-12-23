@@ -4,6 +4,7 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
 #include "RenderSystem.h"
+#include "ResourceManager.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ class GameManager
 
         bool _running;
         RenderSystem *_renderSystem;
+        ResourceManager *_resourceManager;
         GLFWwindow *_window;
 
         VertexBuffer *vertexBuffer;

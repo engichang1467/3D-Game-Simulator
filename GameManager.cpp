@@ -6,13 +6,14 @@ GLfloat vertices[] = {
      0.0f,  0.5f, 0.0f
 };
 
-GameManager::GameManager(bool running): _running(running), _window(glfwGetCurrentContext()), _renderSystem(&RenderSystem::getRenderSystem())
+GameManager::GameManager(bool running): _running(running), _window(glfwGetCurrentContext()), _renderSystem(&RenderSystem::getRenderSystem()), _resourceManager(&ResourceManager::getResourceManager())
 {
     vertexBuffer = new VertexBuffer(vertices, sizeof(vertices), GL_TRIANGLES, 3, sizeof(GLfloat)*3);
 }
 
 GameManager::~GameManager()
 {
+    ResourceManager::destroyResourceManager();
     RenderSystem::destroyRenderSystem();
 }
 
