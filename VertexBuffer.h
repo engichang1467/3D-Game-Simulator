@@ -1,8 +1,7 @@
 #ifndef VERTEXBUFFER_H
 #define VERTEXBUFFER_H
 
-#include <GL/glew.h>
-#include <GL/glut.h>
+
 #include <GLFW/glfw3.h>
 #include <iostream>
 
@@ -12,7 +11,8 @@ class VertexBuffer
         GLuint _vertexBufferID;
 
         GLenum _mode;
-        GLsizei _count, _stride;
+        GLsizei _count; // # of vertices
+        GLsizei _stride;
 
     public:
         
@@ -21,8 +21,9 @@ class VertexBuffer
        VertexBuffer( const GLvoid *data, GLsizeiptr size, GLenum mode, GLsizei count, GLsizei stride);
        ~VertexBuffer();
 
-       void configureVertexAttributess(GLint vertexPosition);
-       void renderVertexBuffer();
+       void configureVertexAttributes(GLint vertexPosition);
+       void renderVertexbuffer();
+
 
 };
 

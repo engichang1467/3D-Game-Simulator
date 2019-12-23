@@ -7,17 +7,16 @@
 class ShaderLoader
 {
     private:
-
         GLuint _programHandle;
 
         GLuint compileShader(GLenum target, const char *source);
-
-    public: 
+    
+    public:
 
         GLuint getProgramHandle();
 
-        ShaderLoader(const char *sourceVS, const char *sourceFS);
+        ShaderLoader( const char *sourceVS, const char *sourceFS);
         ~ShaderLoader();
-};
+};  
 
 #endif

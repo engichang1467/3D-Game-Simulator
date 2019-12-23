@@ -1,9 +1,10 @@
 #ifndef RENDERSYSTEM_H
 #define RENDERSYSTEM_H
 
-#include "VertexBuffer.h" 
+#include <GL/glut.h>
+#include "VertexBuffer.h"
 
-// #define GLFW_INCLUDE_GLU
+#define GLFW_INCLUDE_GLU
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <vector>
