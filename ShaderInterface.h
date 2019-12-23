@@ -21,7 +21,7 @@ class ShaderInterface
     public:
 
         GLuint getProgramHandle();
-        GLint getaPositionVertex();
+        GLint get_aPositionVertex();
         GLint get_uColor();
 
         ShaderInterface(char *VS, char *FS);

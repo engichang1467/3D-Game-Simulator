@@ -6,7 +6,7 @@
 typedef struct
 {
     Vector3 positionCoordinates;
-} VectexDataP;
+} VertexDataP;
 
 
 #endif //VERTEXDATA_H

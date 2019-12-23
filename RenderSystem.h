@@ -18,7 +18,7 @@ class RenderSystem
 
         GLFWwindow *_window;
 
-        vector<ShaderInterface *> *shaderArray;
+        // vector<ShaderInterface *> *shaderArray;
 
         RenderSystem();
         ~RenderSystem();

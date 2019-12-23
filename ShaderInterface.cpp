@@ -7,7 +7,7 @@ GLuint ShaderInterface::getProgramHandle()
     return shader->getProgramHandle();
 }
 
-GLint ShaderInterface::getaPositionVertex()
+GLint ShaderInterface::get_aPositionVertex()
 {
     return _aPositionVertex;
 }

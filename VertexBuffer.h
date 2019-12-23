@@ -4,11 +4,13 @@
 
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "ShaderInterface.h"
 
 class VertexBuffer
 {
     private:
         GLuint _vertexBufferID;
+        ShaderInterface *_shader;
 
         GLenum _mode;
         GLsizei _count; // # of vertices
@@ -17,11 +19,12 @@ class VertexBuffer
     public:
         
        GLuint getVertexBufferID();
+       ShaderInterface *getShader();
          
-       VertexBuffer( const GLvoid *data, GLsizeiptr size, GLenum mode, GLsizei count, GLsizei stride);
+       VertexBuffer( const GLvoid *data, GLsizeiptr size, GLenum mode, GLsizei count, GLsizei stride, ShaderInterface *shader);
        ~VertexBuffer();
 
-       void configureVertexAttributes(GLint vertexPosition);
+       void configureVertexAttributes();
        void renderVertexbuffer();
 
 

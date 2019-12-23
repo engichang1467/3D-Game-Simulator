@@ -17,7 +17,7 @@ class GameManager
         ResourceManager *_resourceManager;
         GLFWwindow *_window;
 
-        VertexBuffer *vertexBuffer;
+        // VertexBuffer *vertexBuffer;
 
         GameManager(bool running);
         ~GameManager();
