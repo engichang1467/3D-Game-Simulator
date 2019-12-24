@@ -11,6 +11,7 @@ class ShaderInterface
         ShaderLoader *shader;
 
         GLint _aPositionVertex;
+        GLint _aPositionNormal;
         GLint _uColor;
 
         char *_vertexShaderString;
@@ -22,6 +23,7 @@ class ShaderInterface
 
         GLuint getProgramHandle();
         GLint get_aPositionVertex();
+        GLint get_aPositionNormal();
         GLint get_uColor();
 
         ShaderInterface(char *VS, char *FS);

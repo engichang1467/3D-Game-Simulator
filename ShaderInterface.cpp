@@ -12,6 +12,11 @@ GLint ShaderInterface::get_aPositionVertex()
     return _aPositionVertex;
 }
 
+GLint ShaderInterface::get_aPositionNormal()
+{
+    return _aPositionNormal;
+}
+
 GLint ShaderInterface::get_uColor()
 {
     return _uColor;
@@ -28,6 +33,7 @@ ShaderInterface::ShaderInterface(char *VS, char *FS)
     free(_fragmentShaderString);
 
     _aPositionVertex = glGetAttribLocation(shader->getProgramHandle(), "aPositionVertex");
+    _aPositionNormal = glGetAttribLocation(shader->getProgramHandle(), "aPositionNormal");
 
     _uColor = glGetUniformLocation( shader->getProgramHandle(), "uColor");
 }
