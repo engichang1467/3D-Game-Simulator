@@ -15,30 +15,33 @@ RenderSystem::~RenderSystem()
 
 }
 
-void RenderSystem::render(VertexBuffer *vertexBuffer)
+void RenderSystem::render(Entity *entity)
 {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
-    glUseProgram( (vertexBuffer->getShader())->getProgramHandle() );
+    // glUseProgram( (vertexBuffer->getShader())->getProgramHandle() );
+    glUseProgram( entity->getVertexBuffer()->getShader()->getProgramHandle() );
 
     glLoadIdentity();
     gluLookAt( 3.0f, 2.0f, -2.0f, 
                0.0f, 0.0f,  0.0f, 
                0.0f, 1.0f,  0.0f);
 
-    glUniform4f(   (vertexBuffer->getShader())->get_uColor(), 
-                   (vertexBuffer->getShaderData())->get_uColorValue().x, 
-                   (vertexBuffer->getShaderData())->get_uColorValue().y, 
-                   (vertexBuffer->getShaderData())->get_uColorValue().z, 
-                   (vertexBuffer->getShaderData())->get_uColorValue().w);
+    glTranslatef(entity->getPosition().x, entity->getPosition().y, entity->getPosition().z);
 
-    glUniform3f(   (vertexBuffer->getShader())->get_uLightPosition(), 
-                   (vertexBuffer->getShaderData())->get_uLightPosition().x, 
-                   (vertexBuffer->getShaderData())->get_uLightPosition().y, 
-                   (vertexBuffer->getShaderData())->get_uLightPosition().z);
+    glUniform4f(   (entity->getVertexBuffer()->getShader())->get_uColor(), 
+                   (entity->getVertexBuffer()->getShaderData())->get_uColorValue().x, 
+                   (entity->getVertexBuffer()->getShaderData())->get_uColorValue().y, 
+                   (entity->getVertexBuffer()->getShaderData())->get_uColorValue().z, 
+                   (entity->getVertexBuffer()->getShaderData())->get_uColorValue().w);
 
-    vertexBuffer->configureVertexAttributes();
-    vertexBuffer->renderVertexbuffer();
+    glUniform3f(   (entity->getVertexBuffer()->getShader())->get_uLightPosition(), 
+                   (entity->getVertexBuffer()->getShaderData())->get_uLightPosition().x, 
+                   (entity->getVertexBuffer()->getShaderData())->get_uLightPosition().y, 
+                   (entity->getVertexBuffer()->getShaderData())->get_uLightPosition().z);
+
+    entity->getVertexBuffer()->configureVertexAttributes();
+    entity->getVertexBuffer()->renderVertexbuffer();
 
     glfwSwapBuffers(_window);
     glfwPollEvents();

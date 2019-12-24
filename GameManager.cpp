@@ -9,6 +9,7 @@
 GameManager::GameManager(bool running): _running(running), _window(glfwGetCurrentContext()), _renderSystem(&RenderSystem::getRenderSystem()), _resourceManager(&ResourceManager::getResourceManager())
 {
     // vertexBuffer = new VertexBuffer(vertices, sizeof(vertices), GL_TRIANGLES, 3, sizeof(GLfloat)*3);
+    entity = new Entity( _resourceManager->getVertexBufferArray()->at(1), makeVector3(0.0f, 0.0f, 0.0f));
 }
 
 GameManager::~GameManager()
@@ -23,7 +24,7 @@ void GameManager::runGameLoop()
     {
         _running = !glfwWindowShouldClose(_window);
 
-        _renderSystem->render( (_resourceManager->getVertexBufferArray())->at(1) );
+        _renderSystem->render( entity );
     }
 }
 

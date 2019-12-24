@@ -5,6 +5,7 @@
 #include <GLFW/glfw3.h>
 #include "RenderSystem.h"
 #include "ResourceManager.h"
+#include "Entity.h"
 
 using namespace std;
 
@@ -16,6 +17,8 @@ class GameManager
         RenderSystem *_renderSystem;
         ResourceManager *_resourceManager;
         GLFWwindow *_window;
+
+        Entity *entity;
 
         // VertexBuffer *vertexBuffer;
 

@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include "ShaderInterface.h"
+#include "Entity.h"
 
 using namespace std;
 
@@ -24,7 +25,7 @@ class RenderSystem
         ~RenderSystem();
 
     public:
-        void render(VertexBuffer *vertexBuffer);
+        void render(Entity * entity);
 
         static RenderSystem& getRenderSystem();
         static void destroyRenderSystem();
