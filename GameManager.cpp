@@ -10,6 +10,8 @@ GameManager::GameManager(bool running): _running(running), _window(glfwGetCurren
 {
     // vertexBuffer = new VertexBuffer(vertices, sizeof(vertices), GL_TRIANGLES, 3, sizeof(GLfloat)*3);
     entity = new Entity( _resourceManager->getVertexBufferArray()->at(1), makeVector3(0.0f, 0.0f, 0.0f));
+    entity->setRotation(makeVector3(30.0f, 0.0f, 0.0f));
+    entity->setScale(makeVector3(2.0f, 2.0f, 2.0f));
 }
 
 GameManager::~GameManager()
@@ -42,6 +44,7 @@ GameManager& GameManager::getGameManager()
         glfwWindowHint( GLFW_BLUE_BITS, 8);
         glfwWindowHint( GLFW_ALPHA_BITS, 8);
         glfwWindowHint( GLFW_SAMPLES, 16);
+        glfwWindowHint( GLFW_RESIZABLE, GL_FALSE);
 
         GLFWwindow *window = glfwCreateWindow(1280, 720, "My first FPS Game", NULL, NULL);
         glfwMakeContextCurrent(window);

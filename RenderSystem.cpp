@@ -2,16 +2,11 @@
 
 RenderSystem::RenderSystem(): _window(glfwGetCurrentContext())
 {
-    // shaderArray = new vector<ShaderInterface *>;
-    // ShaderInterface *shader = new ShaderInterface("ColorShader.vsh", "ColorShader.fsh");
-    // shaderArray->push_back(shader);
 
 }
 
 RenderSystem::~RenderSystem()
 {
-    // delete shaderArray->at(0);
-    // delete shaderArray;
 
 }
 
@@ -27,7 +22,14 @@ void RenderSystem::render(Entity *entity)
                0.0f, 0.0f,  0.0f, 
                0.0f, 1.0f,  0.0f);
 
+    
     glTranslatef(entity->getPosition().x, entity->getPosition().y, entity->getPosition().z);
+
+    glRotatef( entity->getRotation().x, 0.0f, 0.0f, 1.0f);
+    glRotatef( entity->getRotation().y, 0.0f, 1.0f, 0.0f);
+    glRotatef( entity->getRotation().z, 1.0f, 0.0f, 0.0f);
+
+    glScalef(entity->getScale().x, entity->getScale().y, entity->getScale().z);
 
     glUniform4f(   (entity->getVertexBuffer()->getShader())->get_uColor(), 
                    (entity->getVertexBuffer()->getShaderData())->get_uColorValue().x, 
