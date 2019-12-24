@@ -26,8 +26,16 @@ void RenderSystem::render(VertexBuffer *vertexBuffer)
                0.0f, 0.0f,  0.0f, 
                0.0f, 1.0f,  0.0f);
 
-    glUniform4f( ( vertexBuffer->getShader())->get_uColor(), 
-                   1.0f, 1.0f, 0.0f, 1.0f);
+    glUniform4f(   (vertexBuffer->getShader())->get_uColor(), 
+                   (vertexBuffer->getShaderData())->get_uColorValue().x, 
+                   (vertexBuffer->getShaderData())->get_uColorValue().y, 
+                   (vertexBuffer->getShaderData())->get_uColorValue().z, 
+                   (vertexBuffer->getShaderData())->get_uColorValue().w);
+
+    glUniform3f(   (vertexBuffer->getShader())->get_uLightPosition(), 
+                   (vertexBuffer->getShaderData())->get_uLightPosition().x, 
+                   (vertexBuffer->getShaderData())->get_uLightPosition().y, 
+                   (vertexBuffer->getShaderData())->get_uLightPosition().z);
 
     vertexBuffer->configureVertexAttributes();
     vertexBuffer->renderVertexbuffer();

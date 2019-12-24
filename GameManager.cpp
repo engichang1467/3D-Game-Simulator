@@ -40,6 +40,7 @@ GameManager& GameManager::getGameManager()
         glfwWindowHint( GLFW_GREEN_BITS, 8);
         glfwWindowHint( GLFW_BLUE_BITS, 8);
         glfwWindowHint( GLFW_ALPHA_BITS, 8);
+        glfwWindowHint( GLFW_SAMPLES, 16);
 
         GLFWwindow *window = glfwCreateWindow(1280, 720, "My first FPS Game", NULL, NULL);
         glfwMakeContextCurrent(window);

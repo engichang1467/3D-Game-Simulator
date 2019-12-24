@@ -5,6 +5,7 @@
 #include <vector>
 #include "ShaderInterface.h"
 #include "VertexBuffer.h"
+#include "ShaderData.h"
 
 using namespace std;
 
@@ -13,6 +14,8 @@ class ResourceManager
     private:
         vector<ShaderInterface *> *_shaderArray;
         vector<VertexBuffer *> *_vertexBufferArray;
+
+        ShaderData *shaderData;
 
         ResourceManager();
         ~ResourceManager();

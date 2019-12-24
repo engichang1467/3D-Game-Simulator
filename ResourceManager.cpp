@@ -20,13 +20,16 @@ ResourceManager::ResourceManager()
     ShaderInterface *lightShader = new ShaderInterface("SimpleLightShader.vsh", "SimpleLightShader.fsh");
     _shaderArray->push_back(lightShader);
 
+    shaderData = new ShaderData( makeVector4(1.0f, 0.0f, 1.0f, 1.0f), makeVector3(1.0, 1.0, 1.0f) );
+
     
     _vertexBufferArray = new vector<VertexBuffer *>();
     VertexBuffer *vertexBuffer = new VertexBuffer( vertices, 
                                                    sizeof(vertices), 
                                                    GL_TRIANGLES, 3, 
                                                    sizeof(GLfloat)*3, 
-                                                   _shaderArray->at(0), NULL, NULL);
+                                                   _shaderArray->at(0),
+                                                   shaderData, NULL, NULL);
     _vertexBufferArray->push_back(vertexBuffer);
 
     VertexBuffer *cubeVertexBuffer = new VertexBuffer( cubeVertices, 
@@ -34,6 +37,7 @@ ResourceManager::ResourceManager()
                                                    GL_TRIANGLES, 36, 
                                                    sizeof(VertexDataPN), 
                                                    _shaderArray->at(1), 
+                                                   shaderData,
                                                    (GLvoid *) (offsetof(VertexDataPN, positionCoordinates)), 
                                                    (GLvoid *) (offsetof(VertexDataPN, normalCoordinates)));
     _vertexBufferArray->push_back(cubeVertexBuffer);
@@ -49,6 +53,7 @@ ResourceManager::~ResourceManager()
     for (vector<VertexBuffer *>::iterator iterator = _vertexBufferArray->begin(); iterator != _vertexBufferArray->end(); iterator++)
         delete *iterator;
 
+    delete shaderData;
     delete _vertexBufferArray;
 }
 

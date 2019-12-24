@@ -10,12 +10,6 @@ typedef struct {
 
 } Vector3;
 
-// class Vector3
-// {
-//     private:
-
-//     public:
-
-// };
+Vector3 makeVector3( GLfloat x, GLfloat y, GLfloat z );
 
 #endif // VECTOR3_H

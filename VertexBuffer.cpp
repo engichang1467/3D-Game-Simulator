@@ -10,15 +10,21 @@ ShaderInterface *VertexBuffer::getShader()
     return _shader;
 }
 
+ShaderData *VertexBuffer::getShaderData()
+{
+    return _shaderData;
+}
+
 VertexBuffer::VertexBuffer( const GLvoid *data, 
                             GLsizeiptr size, 
                             GLenum mode, 
                             GLsizei count, 
                             GLsizei stride, 
-                            ShaderInterface *shader, 
+                            ShaderInterface *shader,
+                            ShaderData *shaderData, 
                             GLvoid *positionOffset, 
                             GLvoid *normalOffset)
-: _mode(mode), _count(count), _stride(stride), _shader(shader), _positionOffset(positionOffset), _normalOffset(normalOffset)
+: _mode(mode), _count(count), _stride(stride), _shader(shader), _positionOffset(positionOffset), _normalOffset(normalOffset), _shaderData(shaderData)
 {
     glGenBuffers(1, &_vertexBufferID);
     glBindBuffer( GL_ARRAY_BUFFER, _vertexBufferID );

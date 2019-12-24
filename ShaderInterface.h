@@ -13,6 +13,7 @@ class ShaderInterface
         GLint _aPositionVertex;
         GLint _aPositionNormal;
         GLint _uColor;
+        GLint _uLightPosition;
 
         char *_vertexShaderString;
         char *_fragmentShaderString;
@@ -25,6 +26,7 @@ class ShaderInterface
         GLint get_aPositionVertex();
         GLint get_aPositionNormal();
         GLint get_uColor();
+        GLint get_uLightPosition();
 
         ShaderInterface(char *VS, char *FS);
         ~ShaderInterface();

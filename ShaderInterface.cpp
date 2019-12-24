@@ -22,6 +22,11 @@ GLint ShaderInterface::get_uColor()
     return _uColor;
 }
 
+GLint ShaderInterface::get_uLightPosition()
+{
+    return _uLightPosition;
+}
+
 ShaderInterface::ShaderInterface(char *VS, char *FS)
 {
     _vertexShaderString = loadTextFromFile(VS);
@@ -36,6 +41,7 @@ ShaderInterface::ShaderInterface(char *VS, char *FS)
     _aPositionNormal = glGetAttribLocation(shader->getProgramHandle(), "aPositionNormal");
 
     _uColor = glGetUniformLocation( shader->getProgramHandle(), "uColor");
+    _uLightPosition = glGetUniformLocation( shader->getProgramHandle(), "uLightPosition");
 }
 
 ShaderInterface::~ShaderInterface()
