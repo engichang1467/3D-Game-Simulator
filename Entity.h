@@ -15,6 +15,8 @@ class Entity
 
         Vector3 _position, _scale, _rotation;
 
+        Vector3 _velocity, _scaleVelocity, _rotationVelocity;
+
     public:
 
         VertexBuffer *getVertexBuffer();
@@ -28,6 +30,15 @@ class Entity
 
         Vector3 getRotation();
         void setRotation(Vector3 newRotation);
+
+        Vector3 getVelocity();
+        void setVelocity(Vector3 newVelocity);
+
+        Vector3 getScaleVelocity();
+        void setScaleVelocity(Vector3 newScaleVelocity);
+
+        Vector3 getRotationVelocity();
+        void setRotationVelocity(Vector3 newRotationVelocity);
 
         Entity(VertexBuffer *vertexBuffer, Vector3 position);
         ~Entity();

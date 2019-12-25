@@ -6,12 +6,19 @@
 //      0.0f,  0.5f, 0.0f
 // };
 
-GameManager::GameManager(bool running): _running(running), _window(glfwGetCurrentContext()), _renderSystem(&RenderSystem::getRenderSystem()), _resourceManager(&ResourceManager::getResourceManager())
+GameManager::GameManager(bool running): 
+_running(running), _window(glfwGetCurrentContext()), 
+_renderSystem(&RenderSystem::getRenderSystem()), 
+_resourceManager(&ResourceManager::getResourceManager()),
+_movementSystem(&MovementSystem::getMovementSystem())
 {
     // vertexBuffer = new VertexBuffer(vertices, sizeof(vertices), GL_TRIANGLES, 3, sizeof(GLfloat)*3);
     entity = new Entity( _resourceManager->getVertexBufferArray()->at(1), makeVector3(0.0f, 0.0f, 0.0f));
-    entity->setRotation(makeVector3(30.0f, 0.0f, 0.0f));
-    entity->setScale(makeVector3(2.0f, 2.0f, 2.0f));
+    entity->setRotation(makeVector3(90.0f, 0.0f, 0.0f));
+    entity->setScale(makeVector3(1.0f, 1.0f, 1.0f));
+    entity->setVelocity(makeVector3(-0.001f, 0.001f, -0.001f));
+    entity->setRotationVelocity(makeVector3(1.0f, 1.0f, 0.0f));
+    entity->setScaleVelocity(makeVector3(0.01f, 0.0f, 0.0f));
 }
 
 GameManager::~GameManager()
@@ -25,6 +32,8 @@ void GameManager::runGameLoop()
     while (_running)
     {
         _running = !glfwWindowShouldClose(_window);
+
+        _movementSystem->update( entity );
 
         _renderSystem->render( entity );
     }
