@@ -6,6 +6,7 @@
 #include "RenderSystem.h"
 #include "ResourceManager.h"
 #include "MovementSystem.h"
+#include "CameraSystem.h"
 #include "Entity.h"
 
 using namespace std;
@@ -18,9 +19,11 @@ class GameManager
         RenderSystem *_renderSystem;
         ResourceManager *_resourceManager;
         MovementSystem *_movementSystem;
+        CameraSystem *_cameraSystem;
         GLFWwindow *_window;
 
         Entity *entity;
+        Entity *camera;
 
         // VertexBuffer *vertexBuffer;
 

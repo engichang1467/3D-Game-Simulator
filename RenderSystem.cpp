@@ -1,8 +1,8 @@
 #include "RenderSystem.h"
 
-RenderSystem::RenderSystem(): _window(glfwGetCurrentContext())
+RenderSystem::RenderSystem(): _window(glfwGetCurrentContext()), _cameraSystem(&CameraSystem::getCameraSystem())
 {
-
+    _currentCamera = _cameraSystem->getCurrentCamera();
 }
 
 RenderSystem::~RenderSystem()
@@ -17,10 +17,18 @@ void RenderSystem::render(Entity *entity)
     // glUseProgram( (vertexBuffer->getShader())->getProgramHandle() );
     glUseProgram( entity->getVertexBuffer()->getShader()->getProgramHandle() );
 
+    _currentCamera = _cameraSystem->getCurrentCamera();
+
     glLoadIdentity();
-    gluLookAt( 3.0f, 2.0f, -2.0f, 
-               0.0f, 0.0f,  0.0f, 
-               0.0f, 1.0f,  0.0f);
+    gluLookAt( _currentCamera->getPosition().x, 
+               _currentCamera->getPosition().y, 
+               _currentCamera->getPosition().z, 
+               _currentCamera->getEyeVector().x, 
+               _currentCamera->getEyeVector().y, 
+               _currentCamera->getEyeVector().z, 
+               _currentCamera->getUpVector().x, 
+               _currentCamera->getUpVector().y,  
+               _currentCamera->getUpVector().z);
 
     
     glTranslatef(entity->getPosition().x, entity->getPosition().y, entity->getPosition().z);

@@ -10,6 +10,7 @@
 #include <vector>
 #include "ShaderInterface.h"
 #include "Entity.h"
+#include "CameraSystem.h"
 
 using namespace std;
 
@@ -18,6 +19,9 @@ class RenderSystem
     private:
 
         GLFWwindow *_window;
+
+        CameraSystem *_cameraSystem;
+        Entity *_currentCamera;
 
         // vector<ShaderInterface *> *shaderArray;
 

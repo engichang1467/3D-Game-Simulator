@@ -10,21 +10,30 @@ GameManager::GameManager(bool running):
 _running(running), _window(glfwGetCurrentContext()), 
 _renderSystem(&RenderSystem::getRenderSystem()), 
 _resourceManager(&ResourceManager::getResourceManager()),
-_movementSystem(&MovementSystem::getMovementSystem())
+_movementSystem(&MovementSystem::getMovementSystem()),
+_cameraSystem(&CameraSystem::getCameraSystem())
 {
     // vertexBuffer = new VertexBuffer(vertices, sizeof(vertices), GL_TRIANGLES, 3, sizeof(GLfloat)*3);
     entity = new Entity( _resourceManager->getVertexBufferArray()->at(1), makeVector3(0.0f, 0.0f, 0.0f));
     entity->setRotation(makeVector3(90.0f, 0.0f, 0.0f));
     entity->setScale(makeVector3(1.0f, 1.0f, 1.0f));
-    entity->setVelocity(makeVector3(-0.01f, 0.01f, -0.01f));
-    entity->setRotationVelocity(makeVector3(1.0f, 1.0f, 0.0f));
-    entity->setScaleVelocity(makeVector3(0.01f, 0.0f, 0.0f));
+    // entity->setVelocity(makeVector3(-0.01f, 0.01f, -0.01f));
+    // entity->setRotationVelocity(makeVector3(1.0f, 1.0f, 0.0f));
+    // entity->setScaleVelocity(makeVector3(0.01f, 0.0f, 0.0f));
+
+    camera = new Entity(NULL, makeVector3(1.0f, 1.0f, 2.0f));
+    camera->setEyeVector(makeVector3(0.0f, 0.0f, 0.0f));
+    camera->setVelocity(makeVector3(0.0f, 0.0f, 0.01f));
+
+    _cameraSystem->setCurrentCamera(camera);
 }
 
 GameManager::~GameManager()
 {
     ResourceManager::destroyResourceManager();
+    CameraSystem::destroyCameraSystem();
     RenderSystem::destroyRenderSystem();
+
 }
 
 #define Updates_Per_Sceond 60.0f
@@ -45,6 +54,7 @@ void GameManager::runGameLoop()
             _running = !glfwWindowShouldClose(_window);
 
             _movementSystem->update( entity );
+            _movementSystem->update( camera );
 
             --deltaTime;
         }
