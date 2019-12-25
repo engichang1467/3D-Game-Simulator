@@ -16,7 +16,7 @@ _movementSystem(&MovementSystem::getMovementSystem())
     entity = new Entity( _resourceManager->getVertexBufferArray()->at(1), makeVector3(0.0f, 0.0f, 0.0f));
     entity->setRotation(makeVector3(90.0f, 0.0f, 0.0f));
     entity->setScale(makeVector3(1.0f, 1.0f, 1.0f));
-    entity->setVelocity(makeVector3(-0.001f, 0.001f, -0.001f));
+    entity->setVelocity(makeVector3(-0.01f, 0.01f, -0.01f));
     entity->setRotationVelocity(makeVector3(1.0f, 1.0f, 0.0f));
     entity->setScaleVelocity(makeVector3(0.01f, 0.0f, 0.0f));
 }
@@ -27,13 +27,28 @@ GameManager::~GameManager()
     RenderSystem::destroyRenderSystem();
 }
 
+#define Updates_Per_Sceond 60.0f
+
 void GameManager::runGameLoop()
 {
+    double lastTime = glfwGetTime();
+    double deltaTime = 0.0f;
+
     while (_running)
     {
-        _running = !glfwWindowShouldClose(_window);
+        double currentTime = glfwGetTime();
+        deltaTime += (currentTime - lastTime) * Updates_Per_Sceond;
+        lastTime = currentTime;
 
-        _movementSystem->update( entity );
+        while (deltaTime >= 1.0f)
+        {
+            _running = !glfwWindowShouldClose(_window);
+
+            _movementSystem->update( entity );
+
+            --deltaTime;
+        }
+
 
         _renderSystem->render( entity );
     }
