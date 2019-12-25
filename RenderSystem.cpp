@@ -1,5 +1,15 @@
 #include "RenderSystem.h"
 
+Entity *RenderSystem::getCurrentCamera()
+{
+    return _currentCamera;
+}
+
+void RenderSystem::setCurrentCamera(Entity *newCamera)
+{
+    _currentCamera = newCamera;
+}
+
 RenderSystem::RenderSystem(): _window(glfwGetCurrentContext()), _cameraSystem(&CameraSystem::getCameraSystem())
 {
     _currentCamera = _cameraSystem->getCurrentCamera();
@@ -10,14 +20,21 @@ RenderSystem::~RenderSystem()
 
 }
 
-void RenderSystem::render(Entity *entity)
+void RenderSystem::render(vector<Entity *> *entityArray)
 {
+    for (vector<Entity *>::iterator iterator = entityArray->begin(); iterator != entityArray->end(); iterator++)
+    {
+        Entity *entity = *iterator;
+
+        if (entity->getVertexBuffer() != NULL)
+        {
+
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     // glUseProgram( (vertexBuffer->getShader())->getProgramHandle() );
     glUseProgram( entity->getVertexBuffer()->getShader()->getProgramHandle() );
 
-    _currentCamera = _cameraSystem->getCurrentCamera();
+    // _currentCamera = _cameraSystem->getCurrentCamera();
 
     glLoadIdentity();
     gluLookAt( _currentCamera->getPosition().x, 
@@ -55,6 +72,8 @@ void RenderSystem::render(Entity *entity)
 
     glfwSwapBuffers(_window);
     glfwPollEvents();
+        }
+    }
 }
 
 RenderSystem& RenderSystem::getRenderSystem()

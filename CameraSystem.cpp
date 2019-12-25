@@ -1,4 +1,5 @@
 #include "CameraSystem.h"
+#include "RenderSystem.h"
 
 CameraSystem::CameraSystem()
 {
@@ -19,6 +20,9 @@ Entity *CameraSystem::getCurrentCamera()
 void CameraSystem::setCurrentCamera(Entity *newCamera)
 {
     _currentCamera = newCamera;
+
+    RenderSystem *renderSystem = &RenderSystem::getRenderSystem();
+    renderSystem->setCurrentCamera(_currentCamera);
 }
 
 CameraSystem &CameraSystem::getCameraSystem()

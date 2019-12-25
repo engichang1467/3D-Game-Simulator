@@ -6,6 +6,7 @@
 #include <GLFW/glfw3.h>
 #include "Entity.h"
 
+
 class MovementSystem
 {
     private:
@@ -15,7 +16,7 @@ class MovementSystem
 
     public:
 
-        void update(Entity *entity);
+        void update(vector<Entity *> *entityArray);
 
         static MovementSystem& getMovementSystem();
         static void destroyMovementSystem();

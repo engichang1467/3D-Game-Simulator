@@ -8,6 +8,7 @@
 #include "MovementSystem.h"
 #include "CameraSystem.h"
 #include "Entity.h"
+#include "Scene.h"
 
 using namespace std;
 
@@ -22,8 +23,10 @@ class GameManager
         CameraSystem *_cameraSystem;
         GLFWwindow *_window;
 
-        Entity *entity;
-        Entity *camera;
+        Scene *scene;
+
+        // Entity *entity;
+        // Entity *camera;
 
         // VertexBuffer *vertexBuffer;
 
