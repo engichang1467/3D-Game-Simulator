@@ -11,7 +11,8 @@ _running(running), _window(glfwGetCurrentContext()),
 _renderSystem(&RenderSystem::getRenderSystem()), 
 _resourceManager(&ResourceManager::getResourceManager()),
 _movementSystem(&MovementSystem::getMovementSystem()),
-_cameraSystem(&CameraSystem::getCameraSystem()), scene(new Scene)
+_cameraSystem(&CameraSystem::getCameraSystem()), scene(new Scene),
+_playerInputSystem(&PlayerInputSystem::getPlayerInputSystem())
 {
     // entity = new Entity( _resourceManager->getVertexBufferArray()->at(1), makeVector3(0.0f, 0.0f, 0.0f));
     // entity->setRotation(makeVector3(90.0f, 0.0f, 0.0f));
@@ -32,6 +33,7 @@ GameManager::~GameManager()
     ResourceManager::destroyResourceManager();
     CameraSystem::destroyCameraSystem();
     RenderSystem::destroyRenderSystem();
+    PlayerInputSystem::destroyPlayerInputSystem();
 
 }
 
