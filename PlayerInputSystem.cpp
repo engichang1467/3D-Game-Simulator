@@ -1,6 +1,11 @@
 #include "PlayerInputSystem.h"
 
-PlayerInputSystem::PlayerInputSystem()
+void PlayerInputSystem::setCurrentPlayer(Entity *newPlayer)
+{
+    _currentPlayer = newPlayer;  
+    _eyeVector = normalizeVector3(newPlayer->getEyeVector()); 
+}
+PlayerInputSystem::PlayerInputSystem(): _window(glfwGetCurrentContext())
 {
 
 }
@@ -27,6 +32,28 @@ void PlayerInputSystem::keyCallback( GLFWwindow *window,
         }
     }
 }                                        
+
+void PlayerInputSystem::update()
+{
+    if ( _currentPlayer != NULL && glfwGetInputMode( _window, GLFW_CURSOR) == GLFW_CURSOR_DISABLED)
+    {
+        // Press 'W' to move forward
+        if (glfwGetKey( _window, GLFW_KEY_W))
+        {
+            _currentPlayer->setPosition(addVector3(_currentPlayer->getPosition(), 
+            scalerMultiplyVector3(_eyeVector, 0.07f)));
+        }
+        // Press 'S' to move backward
+        if (glfwGetKey( _window, GLFW_KEY_S))
+        {
+            _currentPlayer->setPosition(subtractVector3(_currentPlayer->getPosition(), 
+            scalerMultiplyVector3(_eyeVector, 0.07f)));
+        }
+
+        _currentPlayer->setEyeVector(addVector3(_currentPlayer->getPosition(), _eyeVector));
+    }
+}
+
 
 void PlayerInputSystem::keyCallbackFun( GLFWwindow *window, 
                                         int key, 
