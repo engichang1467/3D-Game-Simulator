@@ -4,6 +4,7 @@
 #include <iostream>
 #include <GLFW/glfw3.h>
 #include "Entity.h"
+#include "Vector2.h"
 
 using namespace std;
 
@@ -11,13 +12,13 @@ class PlayerInputSystem
 {
     private:
 
+        Vector2 _lastMousePosition;
         Vector3 _eyeVector;
         GLFWwindow *_window;
         Entity *_currentPlayer;
 
         PlayerInputSystem();
         ~PlayerInputSystem();
-
 
         void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods );
 

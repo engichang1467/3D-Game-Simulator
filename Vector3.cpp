@@ -44,6 +44,16 @@ Vector3 normalizeVector3(Vector3 vector)
     return unitVector;
 }
 
+Vector3 crossProductVector3(Vector3 vectorA, Vector3 vectorB)
+{
+    Vector3 newVector;
+    newVector.x = vectorA.y * vectorB.z - vectorA.z * vectorB.y;
+    newVector.y = vectorA.z * vectorB.x - vectorA.x * vectorB.z;
+    newVector.z = vectorA.x * vectorB.y - vectorA.y * vectorB.x;
+
+    return newVector;
+}
+
 Vector3 scalerMultiplyVector3(Vector3 vectorToMultiply, GLfloat scalerValue)
 {
     Vector3 newVector;
@@ -52,4 +62,25 @@ Vector3 scalerMultiplyVector3(Vector3 vectorToMultiply, GLfloat scalerValue)
     newVector.z = vectorToMultiply.z * scalerValue;
 
     return newVector;
+}
+
+GLfloat dotProductVector3( Vector3 vectorA, Vector3 vectorB)
+{
+    return vectorA.x * vectorB.x + vectorA.y * vectorB.y + vectorA.z * vectorB.z;
+}
+
+Vector3 transformVector3(Vector3 vector, Matrix3 transformationMatrix)
+{
+    Vector3 newVector;
+
+    newVector.x = dotProductVector3(vector, makeVector3( transformationMatrix.m00, 
+                                                         transformationMatrix.m10, 
+                                                         transformationMatrix.m20));
+    newVector.y = dotProductVector3(vector, makeVector3( transformationMatrix.m01, 
+                                                         transformationMatrix.m11, 
+                                                         transformationMatrix.m22));
+    newVector.z = dotProductVector3(vector, makeVector3( transformationMatrix.m02, 
+                                                         transformationMatrix.m12, 
+                                                         transformationMatrix.m22)); 
+    return newVector;                                   
 }

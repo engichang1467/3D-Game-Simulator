@@ -48,13 +48,17 @@ void RenderSystem::render(vector<Entity *> *entityArray)
                _currentCamera->getUpVector().z);
 
     
-    glTranslatef(entity->getPosition().x, entity->getPosition().y, entity->getPosition().z);
+    glTranslatef(entity->getPosition().x, 
+                 entity->getPosition().y, 
+                 entity->getPosition().z);
 
     glRotatef( entity->getRotation().x, 0.0f, 0.0f, 1.0f);
     glRotatef( entity->getRotation().y, 0.0f, 1.0f, 0.0f);
     glRotatef( entity->getRotation().z, 1.0f, 0.0f, 0.0f);
 
-    glScalef(entity->getScale().x, entity->getScale().y, entity->getScale().z);
+    glScalef(entity->getScale().x, 
+             entity->getScale().y, 
+             entity->getScale().z);
 
     glUniform4f(   (entity->getVertexBuffer()->getShader())->get_uColor(), 
                    (entity->getVertexBuffer()->getShaderData())->get_uColorValue().x, 
@@ -70,10 +74,10 @@ void RenderSystem::render(vector<Entity *> *entityArray)
     entity->getVertexBuffer()->configureVertexAttributes();
     entity->getVertexBuffer()->renderVertexbuffer();
 
-    glfwSwapBuffers(_window);
-    glfwPollEvents();
         }
     }
+    glfwSwapBuffers(_window);
+    glfwPollEvents();
 }
 
 RenderSystem& RenderSystem::getRenderSystem()
@@ -87,7 +91,7 @@ RenderSystem& RenderSystem::getRenderSystem()
         glClearColor( 1.0f, 1.0f, 1.0f, 1.0f );
 
         glMatrixMode( GL_PROJECTION );
-        gluPerspective( 75.0f, 1280.0f / 720.0f, 1, 1000 );
+        gluPerspective( 65.0f, 1280.0f / 720.0f, 1, 1000 );
         glViewport(0.0f, 0.0f, 1280.0f, 720.0f);
         glMatrixMode( GL_MODELVIEW );
 
